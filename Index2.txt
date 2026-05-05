@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опрос: Кибербуллинг</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #0a0c10;
+            color: #e8edf2;
+            line-height: 1.5;
+            padding: 24px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #12151c;
+            border-radius: 28px;
+            padding: 40px 32px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5);
+            border: 1px solid #2a2f3a;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .subhead {
+            font-size: 18px;
+            color: #9aa4bf;
+            margin-bottom: 32px;
+            border-left: 3px solid #3b82f6;
+            padding-left: 16px;
+        }
+
+        .question-card {
+            background: #1a1e28;
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 28px;
+            border: 1px solid #2a2f3a;
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: #ffffff;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f1219;
+            padding: 12px 16px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: 1px solid #2a2f3a;
+        }
+
+        .option:hover {
+            background: #1f2533;
+        }
+
+        input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+
+        label {
+            font-size: 16px;
+            cursor: pointer;
+            flex: 1;
+            color: #cfd6e6;
+        }
+
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 16px;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background: #2563eb;
+        }
+
+        .result-box {
+            background: #1a1e28;
+            border-radius: 20px;
+            padding: 28px;
+            margin-top: 32px;
+            text-align: center;
+            border: 1px solid #2a2f3a;
+            display: none;
+        }
+
+        .result-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #ffffff;
+        }
+
+        .result-text {
+            font-size: 17px;
+            color: #cbd5e6;
+            margin-bottom: 24px;
+        }
+
+        .reset-btn {
+            background: #2a2f3a;
+            margin-top: 8px;
+        }
+
+        .reset-btn:hover {
+            background: #3a4050;
+        }
+
+        .error-message {
+            background: #4a1a2c;
+            border: 1px solid #e53e3e;
+            color: #ffb4b4;
+            padding: 12px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 32px;
+            font-size: 13px;
+            color: #6a728a;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 20px;
+            }
+            h1 {
+                font-size: 26px;
+            }
+            .question-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Опрос: кибербуллинг</h1>
+    <div class="subhead">
+        Проверь свои знания. Ответь на вопросы — в конце узнаешь результат.
+    </div>
+
+    <div id="errorMessage" class="error-message">
+        Ответьте на все вопросы, чтобы увидеть результат.
+    </div>
+
+    <form id="quizForm">
+        <!-- Вопрос 1 -->
+        <div class="question-card">
+            <div class="question-text">1. Что такое кибербуллинг?</div>
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q1" value="0"> Дружеские шутки в интернете
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="1"> Травля, оскорбления и угрозы в сети
+                </label>
+                <label class="option">
+                    <input type="radio" name="q1" value="0"> Обсуждение новостей в комментариях
+                </label>
+            </div>
+        </div>
+
+        <!-- Вопрос 2 -->
+        <div class="question-card">
+            <div class="question-text">2. Как понять, что над тобой издеваются в интернете?</div>
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q2" value="0"> Тебя хвалят за фото
+                </label>
+                <label class="option">
+                    <input type="radio" name="q2" value="1"> Тебя оскорбляют, удаляют из чатов или врут про тебя
+                </label>
+                <label class="option">
+                    <input type="radio" name="q2" value="0"> Тебе желают спокойной ночи
+                </label>
+            </div>
+        </div>
+
+        <!-- Вопрос 3 -->
+        <div class="question-card">
+            <div class="question-text">3. Что делать в первую очередь, если ты стал жертвой кибербуллинга?</div>
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q3" value="0"> Ответить обидчику ещё более грубо
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="1"> Сохранить скриншоты и доказательства травли
+                </label>
+                <label class="option">
+                    <input type="radio" name="q3" value="0"> Удалить свою страницу в соцсетях
+                </label>
+            </div>
+        </div>
+
+        <!-- Вопрос 4 -->
+        <div class="question-card">
+            <div class="question-text">4. Кому можно рассказать о кибербуллинге?</div>
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q4" value="0"> Только друзьям в интернете
+                </label>
+                <label class="option">
+                    <input type="radio" name="q4" value="1"> Родителям, учителю, школьному психологу
+                </label>
+                <label class="option">
+                    <input type="radio" name="q4" value="0"> Никому, это ябедничество
+                </label>
+            </div>
+        </div>
+
+        <!-- Вопрос 5 -->
+        <div class="question-card">
+            <div class="question-text">5. Почему важно сохранять скриншоты переписки при кибербуллинге?</div>
+            <div class="options">
+                <label class="option">
+                    <input type="radio" name="q5" value="0"> Чтобы показать друзьям и посмеяться
+                </label>
+                <label class="option">
+                    <input type="radio" name="q5" value="1"> Это доказательство для школы, полиции или модераторов
+                </label>
+                <label class="option">
+                    <input type="radio" name="q5" value="0"> Чтобы ответить обидчику его же словами
+                </label>
+            </div>
+        </div>
+
+        <button type="button" id="submitBtn">Узнать результат</button>
+    </form>
+
+    <div id="resultBox" class="result-box">
+        <div class="result-title" id="resultTitle"></div>
+        <div class="result-text" id="resultText"></div>
+        <button id="resetBtn" class="reset-btn">Пройти опрос заново</button>
+    </div>
+
+    <footer>
+        Проект «Кибербезопасность для детей и подростков» | Гусев Семён, группа ОИБАС-1625
+    </footer>
+</div>
+
+<script>
+    const form = document.getElementById('quizForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultBox = document.getElementById('resultBox');
+    const errorMessage = document.getElementById('errorMessage');
+    const resetBtn = document.getElementById('resetBtn');
+
+    function getSelectedValue(name) {
+        const selected = document.querySelector(`input[name="${name}"]:checked`);
+        return selected ? parseInt(selected.value) : null;
+    }
+
+    function calculateResult() {
+        const answers = {
+            q1: getSelectedValue('q1'),
+            q2: getSelectedValue('q2'),
+            q3: getSelectedValue('q3'),
+            q4: getSelectedValue('q4'),
+            q5: getSelectedValue('q5')
+        };
+
+        // Проверка что все вопросы отвечены
+        for (let key in answers) {
+            if (answers[key] === null) {
+                return null;
+            }
+        }
+
+        const totalScore = answers.q1 + answers.q2 + answers.q3 + answers.q4 + answers.q5;
+        return totalScore;
+    }
+
+    function showResult(score) {
+        form.style.display = 'none';
+        resultBox.style.display = 'block';
+        errorMessage.style.display = 'none';
+
+        const titleElem = document.getElementById('resultTitle');
+        const textElem = document.getElementById('resultText');
+
+        if (score <= 2) {
+            titleElem.textContent = 'Нужно больше узнать';
+            textElem.textContent = 'Ты пока плохо понимаешь, что такое кибербуллинг и как с ним бороться. Внимательно изучи материалы на сайте — это поможет защитить себя и друзей.';
+        } else if (score <= 4) {
+            titleElem.textContent = 'Хороший результат, но есть над чем работать';
+            textElem.textContent = 'Ты уже многое знаешь, но некоторые важные моменты упускаешь. Прочитай раздел «Что делать при кибербуллинге», чтобы стать увереннее.';
+        } else {
+            titleElem.textContent = 'Отличный результат';
+            textElem.textContent = 'Ты отлично разбираешься в теме кибербуллинга. Знаешь, как распознать травлю и правильно действовать. Поделись этими знаниями с друзьями.';
+        }
+    }
+
+    submitBtn.addEventListener('click', () => {
+        const score = calculateResult();
+        if (score === null) {
+            errorMessage.style.display = 'block';
+            return;
+        }
+        showResult(score);
+    });
+
+    resetBtn.addEventListener('click', () => {
+        // Сбросить все радиокнопки
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => radio.checked = false);
+        form.style.display = 'block';
+        resultBox.style.display = 'none';
+        errorMessage.style.display = 'none';
+    });
+</script>
+</body>
+</html>
